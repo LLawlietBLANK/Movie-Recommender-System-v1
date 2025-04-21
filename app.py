@@ -138,13 +138,16 @@ def fetch_poster(movie_id: int) -> str:
         response = requests.get(proxy_url)
         data = response.json()
         poster_path = data.get("poster_path")
-        if poster_path:
-            return f"https://image.tmdb.org/t/p/w500{poster_path}"
-        else:
-            return "https://via.placeholder.com/500x750?text=No+Image"
-    except Exception as e:
-        print(f"Error fetching poster for movie ID {movie_id}: {e}")
-        return "https://via.placeholder.com/500x750?text=No+Image"
+        return poster_path
+
+
+    #     if poster_path:
+    #         return f"https://image.tmdb.org/t/p/w500{poster_path}"
+    #     else:
+    #         return "https://via.placeholder.com/500x750?text=No+Image"
+    # except Exception as e:
+    #     print(f"Error fetching poster for movie ID {movie_id}: {e}")
+    #     return "https://via.placeholder.com/500x750?text=No+Image"
 
 def recommend(selected_movie_name: str):
     movie_index = movies[movies["title"] == selected_movie_name].index[0]
